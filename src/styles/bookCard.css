@@ -1,0 +1,57 @@
+.bookCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 18%;
+  background-color: var(--white);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.bookImageBlock {
+  height: 300px;
+}
+
+.bookImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.bookInfoBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px;
+}
+
+.bookName {
+  color: var(--title);
+  font-weight: 700;
+}
+
+.bookAuthor,
+.bookYear {
+  color: var(--text);
+}
+
+.bookYear {
+  font-size: 12px;
+}
+
+.favoriteIconContainer {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  display: flex;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: var(--background);
+}
+
+.favoriteIcon {
+  width: 100%;
+  padding: 8px;
+}
