@@ -1,0 +1,37 @@
+.header {
+  border-bottom: 1px solid var(--border);
+}
+
+.headerPrimaryText {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.headerSecondaryText {
+  font-size: 10px;
+  color: var(--text);
+}
+
+.headerTextBlock {
+  display: flex;
+  flex-direction: column;
+}
+
+.headerContent {
+  display: flex;
+  gap: 8px;
+  padding: 12px 84px;
+}
+
+.headerImageBlock {
+  display: flex;
+  background-color: var(--green);
+  width: 35px;
+  height: 35px;
+  border-radius: 12px;
+}
+
+.headerImage {
+  padding: 8px;
+}
