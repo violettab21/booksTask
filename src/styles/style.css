@@ -1,4 +1,7 @@
 body {
   background-color: var(--background);
   font-family: "Playfair";
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
 }

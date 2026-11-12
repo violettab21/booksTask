@@ -3,16 +3,17 @@ export function createElement(tag, classes, children, text) {
   if (classes) {
     element.classList.add(...classes);
   }
-  if (children) {
-    element.append(children);
-  }
   if (text) {
     element.textContent = text;
   }
+  if (children) {
+    element.append(children);
+  }
+
   return element;
 }
 
-export function createParagraphElement(text, classes) {
-  const element = createElement("p", classes, undefined, text);
+export function createParagraphElement(text, classes, children) {
+  const element = createElement("p", classes, children, text);
   return element;
 }

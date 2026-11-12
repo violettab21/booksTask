@@ -1,0 +1,15 @@
+.footer {
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: center;
+  padding: 24px 0;
+}
+
+.footerText {
+  color: var(--text);
+}
+
+.footerLink {
+  color: var(--green);
+  text-decoration: none;
+}
