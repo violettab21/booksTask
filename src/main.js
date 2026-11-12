@@ -1,3 +1,5 @@
 import "./styles/style.css";
+import { createHeader } from "./js/header";
 
-document.querySelector("#app").innerHTML = ``;
+const header = createHeader();
+document.querySelector("#app").append(header);
