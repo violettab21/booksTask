@@ -17,3 +17,11 @@ export function createParagraphElement(text, classes, children) {
   const element = createElement("p", classes, children, text);
   return element;
 }
+
+export function createButtonElement(text, classes, onClick) {
+  const button = createElement("button", classes, undefined, text);
+  button.addEventListener("click", () => {
+    onClick();
+  });
+  return button;
+}

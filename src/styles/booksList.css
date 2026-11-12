@@ -3,5 +3,6 @@
   flex-wrap: wrap;
 
   width: 70%;
+  min-width: 700px;
   gap: 8px;
 }

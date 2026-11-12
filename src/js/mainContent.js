@@ -1,5 +1,5 @@
 import "../styles/main.css";
-import { createBooksList } from "./booksList";
+import { createBooksListElement } from "./booksList";
 import { createFavoritesElement } from "./favorites";
 import { createSearchBlock } from "./search";
 import { createElement } from "./utils/utils";
@@ -315,7 +315,7 @@ const favoriteBooks = [
 export function createMainContent() {
   const mainItems = document.createDocumentFragment();
   const searchBlock = createSearchBlock();
-  const booksList = createBooksList(books);
+  const booksList = createBooksListElement(books);
   const favoriteBooksList = createFavoritesElement(favoriteBooks);
   const booksFragment = document.createDocumentFragment();
   booksFragment.append(booksList, favoriteBooksList);

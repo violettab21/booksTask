@@ -1,6 +1,13 @@
-import { createElement } from "./utils/utils";
+import { createButtonElement, createElement } from "./utils/utils";
 import "../styles/search.css";
 import searchIcon from "../assets/search.svg";
+import {
+  changeBooksList,
+  showLoader,
+  showBooksSearchError,
+  showStartTyping,
+} from "./booksList";
+import { searchBook } from "../api/booksApi";
 
 const titleText = "Discover your next great read";
 const descriptionText =
@@ -19,9 +26,16 @@ export function createSearchBlock() {
   const searchIconEl = createElement("img", ["searchIcon"]);
   searchIconEl.src = searchIcon;
   inputWrapper.append(searchIconEl, input);
-  const button = createElement("button", ["searchButton"], undefined, "Search");
+
   input.placeholder = searchInputPlaceholder;
   input.name = "search";
+
+  const button = createButtonElement(
+    "Search",
+    ["searchButton"],
+    searchBookHandler,
+  );
+
   const searchFragment = document.createDocumentFragment();
   searchFragment.append(inputWrapper, button);
   const search = createElement("div", ["search"], searchFragment);
@@ -30,4 +44,21 @@ export function createSearchBlock() {
   fragment.append(textBlock, search);
   const searchBlock = createElement("div", ["searchBlock"], fragment);
   return searchBlock;
+}
+
+function searchBookHandler() {
+  const searchInput = document.querySelector(".searchInput");
+  const searchTerm = searchInput.value;
+  if (searchTerm.trim().length === 0) {
+    showStartTyping();
+    return;
+  }
+  showLoader();
+  searchBook(searchInput.value)
+    .then((res) => {
+      changeBooksList(res);
+    })
+    .catch((err) => {
+      showBooksSearchError(err);
+    });
 }
