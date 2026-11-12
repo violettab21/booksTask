@@ -4,3 +4,10 @@
   align-items: center;
   gap: 48px;
 }
+
+.books {
+  display: flex;
+  max-width: 1240px;
+  justify-content: center;
+  gap: 12px;
+}

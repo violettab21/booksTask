@@ -1,5 +1,6 @@
 import "../styles/main.css";
 import { createBooksList } from "./booksList";
+import { createFavoritesElement } from "./favorites";
 import { createSearchBlock } from "./search";
 import { createElement } from "./utils/utils";
 
@@ -243,11 +244,83 @@ const books = [
   },
 ];
 
+const favoriteBooks = [
+  {
+    author_key: ["OL1433728A"],
+    author_name: ["Jon Ronson"],
+    cover_edition_key: "OL25416731M",
+    cover_height: 2335,
+    cover_i: 7240390,
+    cover_width: 1537,
+    ebook_access: "printdisabled",
+    edition_count: 11,
+    first_publish_year: 2011,
+    has_fulltext: true,
+    ia: [
+      "psychopathtest0000rons",
+      "psychopathtest0000jonr",
+      "psychopathtestjo00jonr",
+      "psychopathtestjo00rons",
+    ],
+    ia_collection: [
+      "internetarchivebooks",
+      "openlibrary-d-ol",
+      "printdisabled",
+      "stmaryscountylibrary",
+    ],
+    key: "/works/OL16795887W",
+    language: ["eng"],
+    public_scan_b: false,
+    title: "The Psychopath Test",
+  },
+  {
+    author_key: ["OL230834A"],
+    author_name: ["Tom Wolfe"],
+    cover_edition_key: "OL14986907M",
+    cover_height: 1802,
+    cover_i: 14839523,
+    cover_width: 1080,
+    ebook_access: "borrowable",
+    edition_count: 58,
+    first_publish_year: 1968,
+    has_fulltext: true,
+    ia: [
+      "electrickoolaida00wolf",
+      "lektroprokhladit0000wolf",
+      "electrickoolaida0000tomw_y4e5",
+      "electrickoolaida0000tomw_s3c7",
+      "bwb_S0-AFX-559",
+      "electrickoolaida00wolf_1",
+      "electrickoolaida0000wolf",
+      "electrickoolaida00wolf_0",
+      "electrickoolaida0000wolf_z7i0",
+    ],
+    ia_collection: [
+      "americana",
+      "delawarecountydistrictlibrary",
+      "inlibrary",
+      "internetarchivebooks",
+      "marygrovecollege",
+      "printdisabled",
+    ],
+    key: "/works/OL1925362W",
+    language: ["eng", "fre", "rus", "spa"],
+    lending_edition_s: "OL24205996M",
+    lending_identifier_s: "electrickoolaida00wolf",
+    public_scan_b: false,
+    title: "The Electric Kool-Aid Acid Test",
+  },
+];
+
 export function createMainContent() {
   const mainItems = document.createDocumentFragment();
   const searchBlock = createSearchBlock();
   const booksList = createBooksList(books);
-  mainItems.append(searchBlock, booksList);
+  const favoriteBooksList = createFavoritesElement(favoriteBooks);
+  const booksFragment = document.createDocumentFragment();
+  booksFragment.append(booksList, favoriteBooksList);
+  const booksSection = createElement("div", ["books"], booksFragment);
+  mainItems.append(searchBlock, booksSection);
   const main = createElement("main", ["main"], mainItems);
   return main;
 }

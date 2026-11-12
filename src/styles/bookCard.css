@@ -3,13 +3,14 @@
   display: flex;
   flex-direction: column;
   width: 18%;
+  min-width: 150px;
   background-color: var(--white);
   border-radius: 8px;
   overflow: hidden;
 }
 
 .bookImageBlock {
-  height: 300px;
+  height: 250px;
 }
 
 .bookImage {
@@ -29,6 +30,10 @@
 .bookName {
   color: var(--title);
   font-weight: 700;
+  font-size: 14px;
+}
+.bookAuthor {
+  font-size: 14px;
 }
 
 .bookAuthor,
