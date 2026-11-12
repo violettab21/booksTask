@@ -1,0 +1,64 @@
+.searchBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  width: 600px;
+  padding-top: 28px;
+}
+
+.textBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  padding: 0 12px;
+}
+
+.searchTitle {
+  font-size: 38px;
+  text-transform: capitalize;
+  color: var(--title);
+  text-align: center;
+  font-weight: 600;
+}
+
+.searchText {
+  color: var(--text);
+  text-align: center;
+  padding: 0 40px;
+}
+
+.search {
+  display: flex;
+  gap: 4px;
+  width: 100%;
+}
+.inputWrapper {
+  flex-grow: 1;
+  position: relative;
+}
+
+.searchInput {
+  width: 100%;
+  color: var(--text);
+  font-size: 12px;
+  font-family: "Playfair";
+  padding: 12px 12px 12px 48px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.searchIcon {
+  position: absolute;
+  top: 8px;
+  left: 18px;
+}
+
+.searchButton {
+  background-color: var(--green);
+  color: var(--white);
+  font-size: 12px;
+  padding: 12px 24px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}

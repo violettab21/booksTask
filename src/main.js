@@ -1,5 +1,8 @@
 import "./styles/style.css";
 import { createHeader } from "./js/header";
+import { createMainContent } from "./js/mainContent";
 
 const header = createHeader();
-document.querySelector("#app").append(header);
+const mainSection = createMainContent();
+
+document.querySelector("body").append(header, mainSection);
