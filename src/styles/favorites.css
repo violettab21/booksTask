@@ -5,6 +5,7 @@
   flex-direction: column;
   border-radius: 12px;
   border: 1px solid var(--border);
+  min-width: 320px;
 }
 
 .favoritesList {
@@ -15,6 +16,7 @@
 
 .favoriteBookRow {
   display: grid;
+  gap: 8px;
   grid-template-columns: 100px 1fr 20px;
   align-items: center;
   padding: 6px;
@@ -51,7 +53,11 @@
   border-radius: 12px;
 }
 
-.favoritesFavoriteIconContainer svg path {
+.favoritesList .favoriteIconButton {
+  cursor: pointer;
+}
+
+.favoritesList .favoriteIconButton svg path {
   fill: var(--red);
   stroke: none;
 }

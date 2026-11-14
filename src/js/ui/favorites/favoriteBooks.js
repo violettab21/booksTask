@@ -1,4 +1,7 @@
-import { createFavoriteBookElement } from "./favoriteBookRow.js";
+import {
+  createFavoriteBookElement,
+  favoriteButtonHandler,
+} from "./favoriteBookRow.js";
 import { createElement } from "../../utils/utils.js";
 
 export function createFavoritesListElement(favorites) {
@@ -8,6 +11,9 @@ export function createFavoritesListElement(favorites) {
     ["favoritesList"],
     favoritesFragment,
   );
+  favoritesList.addEventListener("click", (event) => {
+    favoriteButtonHandler(event);
+  });
   return favoritesList;
 }
 

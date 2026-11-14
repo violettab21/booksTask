@@ -1,20 +1,35 @@
 import { createBookCard } from "./bookCard";
 import { createElement, createParagraphElement } from "../../utils/utils";
 import "../../../styles/booksList.css";
-import { getFavoriteBooks } from "../../services/favoriteBooks";
+import {
+  getFavoriteBooks,
+  saveFavoriteBook,
+  removeFavoriteBook,
+  isBookFavorite,
+} from "../../services/favoriteBooks";
+import { showNewFavorite, removeFavorite } from "../favorites/favoritesElement";
+import { getBookByKey } from "../../services/books";
+import { favoriteButtonHandler } from "../favorites/favoriteBookRow";
+
+const startSearchText = "Start Search Your Book";
+const noBooksText = "No Books Found";
 
 export function createBooksListElement() {
-  const startSearchMessage = createParagraphElement("Start Search YOur Book", [
+  const startSearchMessage = createParagraphElement(startSearchText, [
     "message",
   ]);
+  //create search results container
   const booksList = createElement("div", ["booksList"], startSearchMessage);
+  booksList.addEventListener("click", favoriteButtonHandler);
   return booksList;
 }
 
 export function createBooksList(books) {
+  //create fragment with books cards
   const booksFragment = document.createDocumentFragment();
   for (let i = 0; i < books.length; i++) {
     const book = createBookCard(books[i]);
+    //check if book is favorite
     const favoriteBooks = getFavoriteBooks();
     if (favoriteBooks.some((favBook) => favBook.key === books[i].key)) {
       book.classList.add("isFavorite");
@@ -27,7 +42,7 @@ export function createBooksList(books) {
 export function changeBooksList(books) {
   let content;
   if (books.length === 0) {
-    content = createParagraphElement("No Books Found", ["message"]);
+    content = createParagraphElement(noBooksText, ["message"]);
   } else {
     content = createBooksList(books);
   }
@@ -46,7 +61,7 @@ export function showBooksSearchError(errorText) {
 }
 
 export function showStartTyping() {
-  const message = createParagraphElement("Enter Search Value", ["message"]);
+  const message = createParagraphElement(startSearchText, ["message"]);
   changeBooksListContainer(message);
 }
 

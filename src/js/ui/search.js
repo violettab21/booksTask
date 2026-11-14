@@ -7,7 +7,7 @@ import {
   showBooksSearchError,
   showStartTyping,
 } from "./booksList/booksList";
-import { searchBook } from "../services/booksApi";
+import { searchBook } from "../api/booksApi";
 import { setBooks, transformBooks } from "../services/books";
 
 const titleText = "Discover your next great read";

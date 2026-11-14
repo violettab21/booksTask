@@ -45,7 +45,7 @@
   font-size: 12px;
 }
 
-.favoriteIconButton {
+.booksList .favoriteIconButton {
   position: absolute;
   right: 10px;
   top: 10px;
@@ -57,9 +57,10 @@
   border-radius: 50%;
   background-color: var(--background);
   border: none;
+  cursor: pointer;
 }
 
-.isFavorite > .favoriteIconButton svg path {
+.isFavorite .favoriteIconButton svg path {
   fill: var(--red);
   stroke: none;
 }

@@ -1,9 +1,18 @@
 import { getBookImage } from "../booksList/bookCard.js";
 import { createElement, createParagraphElement } from "../../utils/utils.js";
 import favoriteImg from "../../../assets/heart.svg?raw";
-import { removeFavoriteBook } from "../../services/favoriteBooks.js";
-import { removeFavorite, updateFavoritesCount } from "./favoritesElement.js";
+import {
+  removeFavorite,
+  updateFavoritesCount,
+  showNewFavorite,
+} from "./favoritesElement.js";
 import { toggleBookListFavoriteIcon } from "../booksList/bookCard.js";
+import { getBookByKey } from "../../services/books";
+import {
+  saveFavoriteBook,
+  removeFavoriteBook,
+  isBookFavorite,
+} from "../../services/favoriteBooks";
 
 export function createFavoriteBookElement(book) {
   //create image block
@@ -51,19 +60,41 @@ export function createFavoriteBookElement(book) {
 }
 
 export function createFavoriteIcon() {
-  const favoriteIconContainer = createElement("div", [
-    "favoritesFavoriteIconContainer",
-  ]);
+  const favoriteIconContainer = createElement("div", ["favoriteIconButton"]);
   favoriteIconContainer.innerHTML = favoriteImg;
-  favoriteIconContainer.addEventListener("click", removeFavoriteBookHandler);
+  /*favoriteIconContainer.addEventListener("click", removeFavoriteBookHandler);*/
   return favoriteIconContainer;
 }
 
-export function removeFavoriteBookHandler(event) {
+/*export function removeFavoriteBookHandler(event) {
   const bookRow = event.currentTarget.closest(".favoriteBookRow");
   const key = bookRow.dataset.key;
   const actualFavoriteBooks = removeFavoriteBook(key);
   removeFavorite(key);
   updateFavoritesCount(actualFavoriteBooks.length);
   toggleBookListFavoriteIcon(key);
+}*/
+
+export function favoriteButtonHandler(event) {
+  const favButton = event.target.closest(".favoriteIconButton");
+  if (favButton) {
+    const bookElement = favButton.closest(`[data-key]`);
+    const bookKey = bookElement.dataset.key;
+    let actualFavoriteBooks;
+    if (!isBookFavorite(bookKey)) {
+      const bookData = getBookByKey(bookKey);
+      actualFavoriteBooks = saveFavoriteBook(bookData);
+      showNewFavorite(bookData);
+    } else {
+      actualFavoriteBooks = removeFavoriteBook(bookKey);
+      removeFavorite(bookKey);
+    }
+    if (event.currentTarget.classList.contains("favoritesList")) {
+      toggleBookListFavoriteIcon(bookKey);
+    } else {
+      bookElement.classList.toggle("isFavorite");
+    }
+
+    updateFavoritesCount(actualFavoriteBooks.length);
+  }
 }

@@ -5,8 +5,6 @@ import {
 } from "../ui/favorites/favoritesElement";
 const LOCAL_STORAGE_FAVORITES_KEY = "favorites";
 
-let favoriteBooks = [];
-
 export function saveFavoriteBook(book) {
   const favoriteBooks = getFavoriteBooks();
   favoriteBooks.push(book);
@@ -39,16 +37,4 @@ export function getFavoriteBooks() {
     return favoriteBooks;
   }
   return [];
-}
-
-export function handleFavoriteButtonClick(book) {
-  let actualFavoriteBooks;
-  if (!isBookFavorite(book.key)) {
-    actualFavoriteBooks = saveFavoriteBook(book);
-    showNewFavorite(book);
-  } else {
-    actualFavoriteBooks = removeFavoriteBook(book.key);
-    removeFavorite(book.key);
-  }
-  updateFavoritesCount(actualFavoriteBooks.length);
 }

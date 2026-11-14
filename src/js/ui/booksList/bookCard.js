@@ -5,8 +5,6 @@ import {
 } from "../../utils/utils";
 import "../../../styles/bookCard.css";
 import favoriteImg from "../../../assets/heart.svg?raw";
-import { getBookByKey } from "../../services/books";
-import { handleFavoriteButtonClick } from "../../services/favoriteBooks";
 
 const placeholderImage =
   "https://media.istockphoto.com/id/1226328537/vector/image-place-holder-with-a-gray-camera-icon.jpg?s=612x612&w=0&k=20&c=qRydgCNlE44OUSSoz5XadsH7WCkU59-l-dwrvZzhXsI=";
@@ -55,18 +53,9 @@ export function getBookImage(coverI) {
 }
 
 export function createFavoriteIcon() {
-  const favoriteIconButton = createButtonElement(
-    undefined,
-    ["favoriteIconButton"],
-    (event) => {
-      const favoriteButton = event.currentTarget;
-      const book = favoriteButton.closest(".bookCard");
-      const booKey = book.dataset.key;
-      const bookData = getBookByKey(booKey);
-      book.classList.toggle("isFavorite");
-      handleFavoriteButtonClick(bookData);
-    },
-  );
+  const favoriteIconButton = createButtonElement(undefined, [
+    "favoriteIconButton",
+  ]);
   favoriteIconButton.innerHTML = favoriteImg;
   return favoriteIconButton;
 }
