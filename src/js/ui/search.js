@@ -1,13 +1,14 @@
-import { createButtonElement, createElement } from "./utils/utils";
-import "../styles/search.css";
-import searchIcon from "../assets/search.svg";
+import { createButtonElement, createElement } from "../utils/utils";
+import "../../styles/search.css";
+import searchIcon from "../../assets/search.svg";
 import {
   changeBooksList,
   showLoader,
   showBooksSearchError,
   showStartTyping,
-} from "./booksList";
-import { searchBook } from "../api/booksApi";
+} from "./booksList/booksList";
+import { searchBook } from "../services/booksApi";
+import { setBooks, transformBooks } from "../services/books";
 
 const titleText = "Discover your next great read";
 const descriptionText =
@@ -56,6 +57,7 @@ function searchBookHandler() {
   showLoader();
   searchBook(searchInput.value)
     .then((res) => {
+      setBooks(transformBooks(res));
       changeBooksList(res);
     })
     .catch((err) => {

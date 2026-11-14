@@ -1,6 +1,6 @@
-import "../styles/header.css";
-import { createElement } from "./utils/utils";
-import book from "../assets/book.svg";
+import "../../styles/header.css";
+import { createElement } from "../utils/utils";
+import book from "../../assets/book.svg";
 
 export function createHeader() {
   //create fragment for text block

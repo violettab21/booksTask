@@ -18,10 +18,10 @@ export function createParagraphElement(text, classes, children) {
   return element;
 }
 
-export function createButtonElement(text, classes, onClick) {
-  const button = createElement("button", classes, undefined, text);
-  button.addEventListener("click", () => {
-    onClick();
+export function createButtonElement(text, classes, onClick, children) {
+  const button = createElement("button", classes, children, text);
+  button.addEventListener("click", (event) => {
+    onClick(event);
   });
   return button;
 }

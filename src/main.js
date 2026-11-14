@@ -1,7 +1,7 @@
 import "./styles/style.css";
-import { createHeader } from "./js/header";
-import { createMainContent } from "./js/mainContent";
-import { createFooterElement } from "./js/footer";
+import { createHeader } from "./js/ui/header";
+import { createMainContent } from "./js/ui/mainContent";
+import { createFooterElement } from "./js/ui/footer";
 
 const header = createHeader();
 const mainSection = createMainContent();

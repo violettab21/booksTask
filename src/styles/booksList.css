@@ -6,3 +6,10 @@
   min-width: 700px;
   gap: 8px;
 }
+
+.loader,
+.message {
+  text-align: center;
+  width: 100%;
+  color: var(--text);
+}

@@ -1,5 +1,5 @@
-import { createElement, createParagraphElement } from "./utils/utils";
-import "../styles/footer.css";
+import { createElement, createParagraphElement } from "../utils/utils";
+import "../../styles/footer.css";
 
 const linkHref = "https://openlibrary.org/";
 
