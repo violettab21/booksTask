@@ -16,6 +16,6 @@ export function createMainContent() {
   booksFragment.append(booksList, favoriteBooksList);
   const booksSection = createElement("div", ["books"], booksFragment);
   mainItems.append(searchBlock, booksSection);
-  const main = createElement("main", ["main"], mainItems);
+  const main = createElement("main", ["main", "container"], mainItems);
   return main;
 }

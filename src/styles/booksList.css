@@ -1,9 +1,8 @@
 .booksList {
   display: flex;
   flex-wrap: wrap;
-  min-width: 700px;
-  width: 70%;
   gap: 8px;
+  flex-grow: 1;
 }
 
 .loader,
@@ -11,4 +10,10 @@
   text-align: center;
   width: 100%;
   color: var(--text);
+}
+
+@media (max-width: 768px) {
+  .booksList {
+    width: 100%;
+  }
 }

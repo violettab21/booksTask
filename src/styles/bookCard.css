@@ -64,3 +64,9 @@
   fill: var(--red);
   stroke: none;
 }
+
+@media (max-width: 768px) {
+  .bookCard {
+    flex-grow: 1;
+  }
+}

@@ -38,7 +38,11 @@ export function createHeader() {
   //create fragment for header content
   const fragment = document.createDocumentFragment();
   fragment.append(headerItemIconBlock, headerItemTextBlock);
-  const headerContent = createElement("div", ["headerContent"], fragment);
+  const headerContent = createElement(
+    "div",
+    ["headerContent", "container"],
+    fragment,
+  );
 
   //create header element
   const header = createElement("header", ["header"], headerContent);

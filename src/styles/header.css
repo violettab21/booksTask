@@ -21,7 +21,7 @@
 .headerContent {
   display: flex;
   gap: 8px;
-  padding: 12px 84px;
+  padding: 12px 0;
 }
 
 .headerImageBlock {

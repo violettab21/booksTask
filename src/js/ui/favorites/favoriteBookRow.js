@@ -62,18 +62,8 @@ export function createFavoriteBookElement(book) {
 export function createFavoriteIcon() {
   const favoriteIconContainer = createElement("div", ["favoriteIconButton"]);
   favoriteIconContainer.innerHTML = favoriteImg;
-  /*favoriteIconContainer.addEventListener("click", removeFavoriteBookHandler);*/
   return favoriteIconContainer;
 }
-
-/*export function removeFavoriteBookHandler(event) {
-  const bookRow = event.currentTarget.closest(".favoriteBookRow");
-  const key = bookRow.dataset.key;
-  const actualFavoriteBooks = removeFavoriteBook(key);
-  removeFavorite(key);
-  updateFavoritesCount(actualFavoriteBooks.length);
-  toggleBookListFavoriteIcon(key);
-}*/
 
 export function favoriteButtonHandler(event) {
   const favButton = event.target.closest(".favoriteIconButton");
