@@ -3,6 +3,7 @@
   flex-wrap: wrap;
   gap: 8px;
   flex-grow: 1;
+  align-items: stretch;
 }
 
 .loader,

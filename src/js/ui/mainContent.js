@@ -4,12 +4,14 @@ import { createFavoritesElement } from "./favorites/favoritesElement";
 import { createSearchBlock } from "./search";
 import { getFavoriteBooks } from "../services/favoriteBooks";
 import { createElement } from "../utils/utils";
+import { createFiltersElement } from "./filters/filtersElement";
 
 const favoriteBooks = getFavoriteBooks();
 
 export function createMainContent() {
   const mainItems = document.createDocumentFragment();
   const searchBlock = createSearchBlock();
+
   const booksList = createBooksListElement();
   const favoriteBooksList = createFavoritesElement(favoriteBooks);
   const booksFragment = document.createDocumentFragment();

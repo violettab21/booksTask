@@ -9,6 +9,7 @@ import {
 } from "./booksList/booksList";
 import { searchBook } from "../api/booksApi";
 import { setBooks, transformBooks } from "../services/books";
+import { updateFilters } from "./filters/filterByAuthorElement";
 
 const titleText = "Discover your next great read";
 const descriptionText =
@@ -61,6 +62,7 @@ function searchBookHandler() {
     .then((res) => {
       setBooks(transformBooks(res));
       changeBooksList(res);
+      updateFilters();
     })
     .catch((err) => {
       showBooksSearchError(err);
