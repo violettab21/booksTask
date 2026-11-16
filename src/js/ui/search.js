@@ -1,4 +1,4 @@
-import { createButtonElement, createElement } from "../utils/utils";
+import { createButtonElement, createElement, debounce } from "../utils/utils";
 import "../../styles/search.css";
 import searchIcon from "../../assets/search.svg";
 import {
@@ -23,6 +23,8 @@ export function createSearchBlock() {
   const textBlock = createElement("div", ["textBlock"], textFragment);
 
   const input = createElement("input", ["searchInput"]);
+  const debounceSearch = debounce(searchBookHandler);
+  input.addEventListener("input", debounceSearch);
   const inputWrapper = createElement("div", ["inputWrapper"], input);
   const searchIconEl = createElement("img", ["searchIcon"]);
   searchIconEl.src = searchIcon;
