@@ -1,8 +1,3 @@
-import {
-  showNewFavorite,
-  removeFavorite,
-  updateFavoritesCount,
-} from "../ui/favorites/favoritesElement";
 const LOCAL_STORAGE_FAVORITES_KEY = "favorites";
 
 export function saveFavoriteBook(book) {

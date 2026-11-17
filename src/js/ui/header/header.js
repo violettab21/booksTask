@@ -1,9 +1,26 @@
-import "../../styles/header.css";
-import { createElement } from "../utils/utils";
-import book from "../../assets/book.svg";
+import "../../../styles/header.css";
+import { createElement } from "../../utils/utils";
+import book from "../../../assets/book.svg";
+import { createThemeElement } from "./theme";
 
 export function createHeader() {
   //create fragment for text block
+  const logo = createLogoElement();
+  const theme = createThemeElement();
+  const headerContentFragment = document.createDocumentFragment();
+  headerContentFragment.append(logo, theme);
+  const headerContent = createElement(
+    "div",
+    ["headerContent", "container"],
+    headerContentFragment,
+  );
+
+  //create header element
+  const header = createElement("header", ["header"], headerContent);
+  return header;
+}
+
+export function createLogoElement() {
   const headerItemTextContentPrimary = createElement(
     "p",
     ["headerPrimaryText"],
@@ -34,17 +51,9 @@ export function createHeader() {
   const img = createElement("img", ["headerImage"]);
   img.src = book;
   const headerItemIconBlock = createElement("div", ["headerImageBlock"], img);
-
-  //create fragment for header content
   const fragment = document.createDocumentFragment();
   fragment.append(headerItemIconBlock, headerItemTextBlock);
-  const headerContent = createElement(
-    "div",
-    ["headerContent", "container"],
-    fragment,
-  );
+  const headerLogo = createElement("div", ["headerLogoContainer"], fragment);
 
-  //create header element
-  const header = createElement("header", ["header"], headerContent);
-  return header;
+  return headerLogo;
 }

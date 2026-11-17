@@ -3,7 +3,7 @@ import { createElement, createParagraphElement } from "../../utils/utils.js";
 import "../../../styles/favorites.css";
 import { createFavoritesListElement } from "./favoriteBooks.js";
 import { createFavoriteBookElement } from "./favoriteBookRow.js";
-import favoriteImg from "../../../assets/heart.svg";
+import favoriteImg from "../../../assets/heart.svg?raw";
 
 export function createFavoritesElement(favorites) {
   //create favorites header
@@ -38,14 +38,11 @@ export function createFavoritesHeaderElement(favoritesCount) {
     favoritesTitleTextFragment,
   );
   //icon
-  const favoriteIcon = createElement("img", ["favoritesIcon"]);
-  favoriteIcon.src = favoriteImg;
-  const favoriteIconContainer = createElement(
-    "div",
-    ["favoritesIconContainer"],
-    favoriteIcon,
-  );
-  favoriteIconContainer.append(favoriteIcon);
+
+  const favoriteIconContainer = createElement("div", [
+    "favoritesIconContainer",
+  ]);
+  favoriteIconContainer.innerHTML = favoriteImg;
 
   const favoritesTitleFragment = document.createDocumentFragment();
   favoritesTitleFragment.append(

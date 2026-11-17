@@ -1,5 +1,5 @@
 import "./styles/style.css";
-import { createHeader } from "./js/ui/header";
+import { createHeader } from "./js/ui/header/header";
 import { createMainContent } from "./js/ui/mainContent";
 import { createFooterElement } from "./js/ui/footer";
 

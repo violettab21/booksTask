@@ -1,11 +1,12 @@
 .favoritesContainer {
-  background-color: var(--white);
+  background-color: var(--card);
   width: 30%;
   display: flex;
   flex-direction: column;
   border-radius: 12px;
   border: 1px solid var(--border);
   min-width: 320px;
+  max-width: 320px;
 }
 
 .favoritesList {
@@ -47,10 +48,17 @@
 }
 
 .favoritesIconContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 30px;
   height: 30px;
-  background-color: rgb(from var(--green) r g b / 30%);
+  background-color: var(--favorite);
   border-radius: 12px;
+}
+
+.favoritesIconContainer svg path {
+  stroke: var(--green);
 }
 
 .favoritesList .favoriteIconButton {
@@ -75,6 +83,10 @@
 
 .favoritesCountText {
   font-size: 12px;
+  color: var(--text);
+}
+
+.favoriteBookInfoBlock {
   color: var(--text);
 }
 

@@ -20,8 +20,20 @@
 
 .headerContent {
   display: flex;
+  justify-content: space-between;
   gap: 8px;
   padding: 12px 0;
+}
+
+.theme {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.theme svg path {
+  stroke: var(--green);
 }
 
 .headerImageBlock {
@@ -34,4 +46,9 @@
 
 .headerImage {
   padding: 8px;
+}
+
+.headerLogoContainer {
+  display: flex;
+  gap: 8px;
 }

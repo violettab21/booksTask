@@ -1,7 +1,7 @@
 .filtersContainer {
   min-width: 200px;
   max-width: 200px;
-  background-color: var(--white);
+  background-color: var(--card);
   border-radius: 12px;
   border: 1px solid var(--border);
   color: var(--text);

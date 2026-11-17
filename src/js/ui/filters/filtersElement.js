@@ -14,6 +14,7 @@ export function createFiltersElement() {
   return filtersContainer;
 }
 
+//function for filters section adding in DOM
 export function addFiltersSection() {
   const filters = createFiltersElement();
   const booksSection = document.querySelector(".books");
