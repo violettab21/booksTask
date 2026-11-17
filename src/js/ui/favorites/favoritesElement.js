@@ -1,4 +1,8 @@
-import { createElement, createParagraphElement } from "../../utils/utils.js";
+import {
+  createDivElement,
+  createElement,
+  createParagraphElement,
+} from "../../utils/utils.js";
 
 import "../../../styles/favorites.css";
 import { createFavoritesListElement } from "./favoriteBooks.js";
@@ -10,13 +14,10 @@ export function createFavoritesElement(favorites) {
   const favoriteHeader = createFavoritesHeaderElement(favorites.length);
   //create favorites list
   const favoriteList = createFavoritesListElement(favorites);
-  const fragment = document.createDocumentFragment();
-  fragment.append(favoriteHeader, favoriteList);
 
-  const favoritesContainer = createElement(
-    "div",
+  const favoritesContainer = createDivElement(
     ["favoritesContainer"],
-    fragment,
+    [favoriteHeader, favoriteList],
   );
   return favoritesContainer;
 }
@@ -30,33 +31,19 @@ export function createFavoritesHeaderElement(favoritesCount) {
     `${favoritesCount} books saved`,
     ["favoritesCountText"],
   );
-  const favoritesTitleTextFragment = document.createDocumentFragment();
-  favoritesTitleTextFragment.append(favoritesTitle, favoritesDescription);
-  const favoritesTitleTextContainer = createElement(
-    "div",
+  const favoritesTitleTextContainer = createDivElement(
     ["favoritesTitleTextContainer"],
-    favoritesTitleTextFragment,
+    [favoritesTitle, favoritesDescription],
   );
   //icon
-
-  const favoriteIconContainer = createElement("div", [
-    "favoritesIconContainer",
-  ]);
+  const favoriteIconContainer = createDivElement(["favoritesIconContainer"]);
   favoriteIconContainer.innerHTML = favoriteImg;
 
-  const favoritesTitleFragment = document.createDocumentFragment();
-  favoritesTitleFragment.append(
-    favoriteIconContainer,
-    favoritesTitleTextContainer,
-  );
-
-  const favoriteTitleContainer = createElement(
-    "div",
+  const favoriteTitleContainer = createDivElement(
     ["favoriteTitleContainer"],
-    favoritesTitleFragment,
+    [favoriteIconContainer, favoritesTitleTextContainer],
   );
-  const favoriteHeader = createElement(
-    "div",
+  const favoriteHeader = createDivElement(
     ["favoritesHeader"],
     favoriteTitleContainer,
   );

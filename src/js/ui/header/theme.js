@@ -1,12 +1,13 @@
 import "../../../styles/header.css";
 import sun from "../../../assets/sun.svg?raw";
 import moon from "../../../assets/moon.svg?raw";
-import { createElement } from "../../utils/utils";
+import { createDivElement } from "../../utils/utils";
 import { getTheme, saveTheme } from "../../services/theme";
 
 export function createThemeElement() {
+  //get theme from local storage
   const savedTheme = getTheme();
-  const theme = createElement("div", ["theme"]);
+  const theme = createDivElement(["theme"]);
   if (savedTheme === "dark") {
     theme.classList.add("dark");
     document.querySelector("body").classList.add("dark");

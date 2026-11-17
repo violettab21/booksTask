@@ -1,5 +1,9 @@
 import { getBookImage } from "../booksList/bookCard.js";
-import { createElement, createParagraphElement } from "../../utils/utils.js";
+import {
+  createDivElement,
+  createElement,
+  createParagraphElement,
+} from "../../utils/utils.js";
 import favoriteImg from "../../../assets/heart.svg?raw";
 import {
   removeFavorite,
@@ -18,49 +22,40 @@ export function createFavoriteBookElement(book) {
   //create image block
   const bookImage = createElement("img", ["favoriteImage"]);
   bookImage.src = getBookImage(book.cover_i);
-  const bookImageBlock = createElement(
-    "div",
-    ["favoriteImageBlock"],
-    bookImage,
-  );
+  const bookImageBlock = createDivElement(["favoriteImageBlock"], bookImage);
 
   //create book info block
-  const bookName = createParagraphElement(book.title, ["favoriteBookName"]);
+  const bookName = createParagraphElement(book.title, [
+    "favoriteBookName",
+    "bookName",
+  ]);
   const bookAuthor = createParagraphElement(book.author_name, [
     "favoriteBookAuthor",
+    "bookAuthor",
   ]);
   const bookYear = createParagraphElement(book.first_publish_year, [
     "favoriteBookYear",
+    "bookYear",
   ]);
-  const bookInfoFragment = document.createDocumentFragment();
-  bookInfoFragment.append(bookName, bookAuthor, bookYear);
-  const bookInfoBlock = createElement(
-    "div",
+
+  const bookInfoBlock = createDivElement(
     ["favoriteBookInfoBlock"],
-    bookInfoFragment,
+    [bookName, bookAuthor, bookYear],
   );
 
   const favoriteIconContainer = createFavoriteIcon();
 
-  const favoriteBookRowFragment = document.createDocumentFragment();
-  favoriteBookRowFragment.append(
-    bookImageBlock,
-    bookInfoBlock,
-    favoriteIconContainer,
-  );
-
   //create book row container
-  const bookRowContainer = createElement(
-    "div",
+  const bookRowContainer = createDivElement(
     ["favoriteBookRow"],
-    favoriteBookRowFragment,
+    [bookImageBlock, bookInfoBlock, favoriteIconContainer],
   );
   bookRowContainer.dataset.key = book.key;
   return bookRowContainer;
 }
 
 export function createFavoriteIcon() {
-  const favoriteIconContainer = createElement("div", ["favoriteIconButton"]);
+  const favoriteIconContainer = createDivElement(["favoriteIconButton"]);
   favoriteIconContainer.innerHTML = favoriteImg;
   return favoriteIconContainer;
 }

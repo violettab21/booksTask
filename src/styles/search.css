@@ -61,6 +61,7 @@
   padding: 12px 24px;
   border: 1px solid var(--border);
   border-radius: 8px;
+  cursor: pointer;
 }
 
 @media (max-width: 768px) {

@@ -1,14 +1,12 @@
 import { createBookCard } from "./bookCard";
-import { createElement, createParagraphElement } from "../../utils/utils";
-import "../../../styles/booksList.css";
 import {
-  getFavoriteBooks,
-  saveFavoriteBook,
-  removeFavoriteBook,
-  isBookFavorite,
-} from "../../services/favoriteBooks";
-import { showNewFavorite, removeFavorite } from "../favorites/favoritesElement";
-import { getBookByKey } from "../../services/books";
+  createDivElement,
+  createElement,
+  createParagraphElement,
+} from "../../utils/utils";
+import "../../../styles/booksList.css";
+import { getFavoriteBooks } from "../../services/favoriteBooks";
+
 import { favoriteButtonHandler } from "../favorites/favoriteBookRow";
 
 const startSearchText = "Start Search Your Book";
@@ -19,7 +17,7 @@ export function createBooksListElement() {
     "message",
   ]);
   //create search results container
-  const booksList = createElement("div", ["booksList"], startSearchMessage);
+  const booksList = createDivElement(["booksList"], startSearchMessage);
   booksList.addEventListener("click", favoriteButtonHandler);
   return booksList;
 }

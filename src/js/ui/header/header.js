@@ -1,18 +1,20 @@
 import "../../../styles/header.css";
-import { createElement } from "../../utils/utils";
+import {
+  createDivElement,
+  createElement,
+  createParagraphElement,
+} from "../../utils/utils";
 import book from "../../../assets/book.svg";
 import { createThemeElement } from "./theme";
 
 export function createHeader() {
-  //create fragment for text block
+  //create logo and theme blocks
   const logo = createLogoElement();
   const theme = createThemeElement();
-  const headerContentFragment = document.createDocumentFragment();
-  headerContentFragment.append(logo, theme);
-  const headerContent = createElement(
-    "div",
+
+  const headerContent = createDivElement(
     ["headerContent", "container"],
-    headerContentFragment,
+    [logo, theme],
   );
 
   //create header element
@@ -21,39 +23,29 @@ export function createHeader() {
 }
 
 export function createLogoElement() {
-  const headerItemTextContentPrimary = createElement(
-    "p",
-    ["headerPrimaryText"],
-    null,
-    "The Library",
-  );
-
-  const headerItemTextContentSecondary = createElement(
-    "p",
-    ["headerSecondaryText"],
-    null,
+  //create paragraphs for logo text
+  const headerItemTextContentPrimary = createParagraphElement("The Library", [
+    "headerPrimaryText",
+  ]);
+  const headerItemTextContentSecondary = createParagraphElement(
     "Discover your next favorite book",
+    ["headerSecondaryText"],
   );
-
-  const headerItemTextFragment = document.createDocumentFragment();
-  headerItemTextFragment.append(
-    headerItemTextContentPrimary,
-    headerItemTextContentSecondary,
-  );
-
-  const headerItemTextBlock = createElement(
-    "div",
+  //create container for logo text
+  const headerItemTextBlock = createDivElement(
     ["headerTextBlock"],
-    headerItemTextFragment,
+    [headerItemTextContentPrimary, headerItemTextContentSecondary],
   );
 
   //create element for icon
   const img = createElement("img", ["headerImage"]);
   img.src = book;
-  const headerItemIconBlock = createElement("div", ["headerImageBlock"], img);
-  const fragment = document.createDocumentFragment();
-  fragment.append(headerItemIconBlock, headerItemTextBlock);
-  const headerLogo = createElement("div", ["headerLogoContainer"], fragment);
+  const headerItemIconBlock = createDivElement(["headerImageBlock"], img);
+  //create logo container
+  const headerLogo = createDivElement(
+    ["headerLogoContainer"],
+    [headerItemIconBlock, headerItemTextBlock],
+  );
 
   return headerLogo;
 }

@@ -7,9 +7,18 @@ export function createElement(tag, classes, children, text) {
     element.textContent = text;
   }
   if (children) {
-    element.append(children);
+    if (Array.isArray(children)) {
+      element.append(...children);
+    } else {
+      element.append(children);
+    }
   }
 
+  return element;
+}
+
+export function createDivElement(classes, children) {
+  const element = createElement("div", classes, children);
   return element;
 }
 
@@ -27,6 +36,11 @@ export function createButtonElement(text, classes, onClick, children) {
   }
 
   return button;
+}
+
+export function createFragment() {
+  const fragment = document.createDocumentFragment();
+  return fragment;
 }
 
 export function debounce(func) {

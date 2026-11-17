@@ -93,5 +93,6 @@
 @media (max-width: 768px) {
   .favoritesContainer {
     width: 100%;
+    max-width: none;
   }
 }

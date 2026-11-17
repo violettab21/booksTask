@@ -4,7 +4,11 @@ import {
   getFilterAuthors,
   setFilterAuthors,
 } from "../../services/filters";
-import { createElement, createParagraphElement } from "../../utils/utils";
+import {
+  createDivElement,
+  createElement,
+  createParagraphElement,
+} from "../../utils/utils";
 import "../../../styles/filters.css";
 import { changeBooksList } from "../booksList/booksList";
 import { addFiltersSection } from "./filtersElement";
@@ -14,20 +18,18 @@ export function createFilterByAuthorElement() {
     "filterByTitle",
   ]);
   const authorsList = createAuthorsListElement();
-  const authorsFilterContainerFragment = document.createDocumentFragment();
-  authorsFilterContainerFragment.append(filterByAuthors, authorsList);
-  const authorsFilterContainer = createElement(
-    "div",
+
+  const authorsFilterContainer = createDivElement(
     ["filterByAuthorContainer"],
-    authorsFilterContainerFragment,
+    [filterByAuthors, authorsList],
   );
   return authorsFilterContainer;
 }
 
 function createAuthorsListElement() {
+  //create filter by author container
   const authorsFragment = createAuthorsList();
-  const authorsElement = createElement(
-    "div",
+  const authorsElement = createDivElement(
     ["authorsListContainer"],
     authorsFragment,
   );
@@ -35,6 +37,7 @@ function createAuthorsListElement() {
 }
 
 function createAuthorsList() {
+  //create authors checkboxes fragment
   const authors = getBooksAuthors();
   const authorsFragment = document.createDocumentFragment();
   authors.forEach((author) => {
@@ -45,7 +48,6 @@ function createAuthorsList() {
 }
 
 function createAuthorFilterItem(author) {
-  const fragment = document.createDocumentFragment();
   const authorCheckbox = createElement("input", ["authorCheckbox"]);
   authorCheckbox.type = "checkbox";
   authorCheckbox.name = author;
@@ -53,8 +55,11 @@ function createAuthorFilterItem(author) {
 
   const label = createElement("label", ["authorLabel"], undefined, author);
   label.htmlFor = authorCheckbox.id;
-  fragment.append(authorCheckbox, label);
-  const checkboxRow = createElement("div", ["checkBoxRow"], fragment);
+
+  const checkboxRow = createDivElement(
+    ["checkBoxRow"],
+    [authorCheckbox, label],
+  );
   checkboxRow.dataset.author = author;
   checkboxRow.addEventListener("click", handleFilterByAuthor);
   return checkboxRow;
@@ -62,13 +67,16 @@ function createAuthorFilterItem(author) {
 
 export function updateFilters() {
   const filtersSection = document.querySelector(".filtersContainer");
+  //if no filters element, create filters container
   if (!filtersSection) {
     addFiltersSection();
     return;
   }
+  //reset filters storage
   setFilterAuthors([]);
   const filtersContainer = document.querySelector(".authorsListContainer");
   const filtersAuthors = createAuthorsList();
+  //update authors list in DOM
   filtersContainer.replaceChildren(filtersAuthors);
 }
 
@@ -76,7 +84,7 @@ export function handleFilterByAuthor(e) {
   const checkboxRow = e.currentTarget;
   const author = checkboxRow.dataset.author;
   const checkbox = checkboxRow.querySelector(".authorCheckbox");
-
+  //update selected filters storage
   if (author) {
     if (checkbox.checked) {
       setFilterAuthors([...getFilterAuthors(), author]);
@@ -86,11 +94,14 @@ export function handleFilterByAuthor(e) {
       );
     }
   }
+  //get selected filters by authors
   const filteredAuthorsOptions = getFilterAuthors();
   if (filteredAuthorsOptions.length > 0) {
     const filteredBooks = filterBooksByAuthor(getFilterAuthors());
+    //update books list in DOM with filtered books
     changeBooksList(filteredBooks);
   } else {
+    //if all checkboxes are uncheck show books by initial search
     const filteredBooks = getBooks();
     changeBooksList(filteredBooks);
   }

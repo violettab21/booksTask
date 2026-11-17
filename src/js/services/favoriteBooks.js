@@ -3,7 +3,10 @@ const LOCAL_STORAGE_FAVORITES_KEY = "favorites";
 export function saveFavoriteBook(book) {
   const favoriteBooks = getFavoriteBooks();
   favoriteBooks.push(book);
-  localStorage.setItem("favorites", JSON.stringify(favoriteBooks));
+  localStorage.setItem(
+    LOCAL_STORAGE_FAVORITES_KEY,
+    JSON.stringify(favoriteBooks),
+  );
   return favoriteBooks;
 }
 
@@ -12,7 +15,10 @@ export function removeFavoriteBook(bookKey) {
   favoriteBooks = favoriteBooks.filter(
     (storageBook) => storageBook.key !== bookKey,
   );
-  localStorage.setItem("favorites", JSON.stringify(favoriteBooks));
+  localStorage.setItem(
+    LOCAL_STORAGE_FAVORITES_KEY,
+    JSON.stringify(favoriteBooks),
+  );
   return favoriteBooks;
 }
 

@@ -2,6 +2,7 @@ import {
   createElement,
   createParagraphElement,
   createButtonElement,
+  createDivElement,
 } from "../../utils/utils";
 import "../../../styles/bookCard.css";
 import favoriteImg from "../../../assets/heart.svg?raw";
@@ -12,35 +13,35 @@ const placeholderImage =
 export function createBookCard(book) {
   //create image block
   const bookImage = createElement("img", ["bookImage"]);
-
   bookImage.src = getBookImage(book.cover_i);
-  const bookImageBlock = createElement("div", ["bookImageBlock"], bookImage);
+  const bookImageBlock = createDivElement(["bookImageBlock"], bookImage);
 
   //create book info block
-  const bookName = createParagraphElement(book.title, ["bookName"]);
-  const bookAuthor = createParagraphElement(book.author_name, ["bookAuthor"]);
+  const bookName = createParagraphElement(book.title, [
+    "cardBookName",
+    "bookName",
+  ]);
+  const bookAuthor = createParagraphElement(book.author_name, [
+    "cardBookAuthor",
+    "bookAuthor",
+  ]);
   const bookYear = createParagraphElement(book.first_publish_year, [
+    "cardBookYear",
     "bookYear",
   ]);
-  const bookInfoFragment = document.createDocumentFragment();
-  bookInfoFragment.append(bookName, bookAuthor, bookYear);
-  const bookInfoBlock = createElement(
-    "div",
+
+  const bookInfoBlock = createDivElement(
     ["bookInfoBlock"],
-    bookInfoFragment,
+    [bookName, bookAuthor, bookYear],
   );
 
   //create favorite icon
   const favoriteButton = createFavoriteIcon();
 
-  const bookCardFragment = document.createDocumentFragment();
-  bookCardFragment.append(bookImageBlock, bookInfoBlock, favoriteButton);
-
   //create book container
-  const bookCardContainer = createElement(
-    "div",
+  const bookCardContainer = createDivElement(
     ["bookCard"],
-    bookCardFragment,
+    [bookImageBlock, bookInfoBlock, favoriteButton],
   );
   bookCardContainer.dataset.key = book.key;
   return bookCardContainer;
@@ -53,9 +54,7 @@ export function getBookImage(coverI) {
 }
 
 export function createFavoriteIcon() {
-  const favoriteIconButton = createButtonElement(undefined, [
-    "favoriteIconButton",
-  ]);
+  const favoriteIconButton = createButtonElement("", ["favoriteIconButton"]);
   favoriteIconButton.innerHTML = favoriteImg;
   return favoriteIconButton;
 }

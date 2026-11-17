@@ -1,16 +1,17 @@
-import { createElement, createParagraphElement } from "../../utils/utils";
+import { createDivElement, createParagraphElement } from "../../utils/utils";
 import "../../../styles/filters.css";
 import { createFilterByAuthorElement } from "./filterByAuthorElement";
 
 export function createFiltersElement() {
+  //create filters header element
   const filtersHeader = createParagraphElement("Filters", ["filtersHeader"]);
-
+  //create filter by author element
   const authorsFilterContainer = createFilterByAuthorElement();
-
-  const fragment = document.createDocumentFragment();
-  fragment.append(filtersHeader, authorsFilterContainer);
-
-  const filtersContainer = createElement("div", ["filtersContainer"], fragment);
+  //create filters header element
+  const filtersContainer = createDivElement(
+    ["filtersContainer"],
+    [filtersHeader, authorsFilterContainer],
+  );
   return filtersContainer;
 }
 
