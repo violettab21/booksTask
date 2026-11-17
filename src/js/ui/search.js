@@ -52,7 +52,7 @@ export function createSearchBlock() {
   );
   //create search input and button container
   const search = createDivElement(["search"], [inputWrapper, button]);
-  //create search input and button container
+  //create search container with text block, input and button
   const searchBlock = createDivElement(["searchBlock"], [textBlock, search]);
   return searchBlock;
 }
@@ -60,11 +60,13 @@ export function createSearchBlock() {
 function searchBookHandler() {
   const searchInput = document.querySelector(".searchInput");
   const searchTerm = searchInput.value;
+  //handle empty input
   if (searchTerm.trim().length === 0) {
     showStartTyping();
     return;
   }
   showLoader();
+  //send request to Open Library API
   searchBook(searchInput.value)
     .then((res) => {
       setBooks(transformBooks(res));

@@ -38,11 +38,12 @@ export function createBookCard(book) {
   //create favorite icon
   const favoriteButton = createFavoriteIcon();
 
-  //create book container
+  //create book card container
   const bookCardContainer = createDivElement(
     ["bookCard"],
     [bookImageBlock, bookInfoBlock, favoriteButton],
   );
+  //add data attribute to store key
   bookCardContainer.dataset.key = book.key;
   return bookCardContainer;
 }
@@ -60,6 +61,7 @@ export function createFavoriteIcon() {
 }
 
 export function toggleBookListFavoriteIcon(key) {
+  //handle book card icon state when favorite books list updated
   const bookList = document.querySelector(".booksList");
   if (bookList) {
     const bookCard = bookList.querySelector(`.bookCard[data-key='${key}']`);

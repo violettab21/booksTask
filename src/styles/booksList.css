@@ -1,9 +1,9 @@
 .booksList {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
   gap: 8px;
   flex-grow: 1;
-  align-items: stretch;
+  align-content: start;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
 }
 
 .loader,
@@ -11,6 +11,7 @@
   text-align: center;
   width: 100%;
   color: var(--text);
+  grid-column: 1/-1;
 }
 
 @media (max-width: 768px) {

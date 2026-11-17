@@ -1,8 +1,4 @@
-import {
-  createDivElement,
-  createElement,
-  createParagraphElement,
-} from "../../utils/utils.js";
+import { createDivElement, createParagraphElement } from "../../utils/utils.js";
 
 import "../../../styles/favorites.css";
 import { createFavoritesListElement } from "./favoriteBooks.js";
@@ -19,11 +15,12 @@ export function createFavoritesElement(favorites) {
     ["favoritesContainer"],
     [favoriteHeader, favoriteList],
   );
+
   return favoritesContainer;
 }
 
 export function createFavoritesHeaderElement(favoritesCount) {
-  //create favorites title text
+  //create favorites header text block
   const favoritesTitle = createParagraphElement("Favorites", [
     "favoritesTitle",
   ]);
@@ -35,7 +32,7 @@ export function createFavoritesHeaderElement(favoritesCount) {
     ["favoritesTitleTextContainer"],
     [favoritesTitle, favoritesDescription],
   );
-  //icon
+  //create favorites header icon block
   const favoriteIconContainer = createDivElement(["favoritesIconContainer"]);
   favoriteIconContainer.innerHTML = favoriteImg;
 
@@ -51,16 +48,17 @@ export function createFavoritesHeaderElement(favoritesCount) {
 }
 
 export function showNewFavorite(book) {
+  //add new favorite book row
   const favoriteBookContainer = document.querySelector(".favoritesList");
   const newFavoriteBookRow = createFavoriteBookElement(book);
   favoriteBookContainer.append(newFavoriteBookRow);
 }
 
 export function removeFavorite(bookKey) {
+  //remove favorite book row
   const favoriteBookContainer = document.querySelector(".favoritesList");
   const favoriteBooksElements =
     favoriteBookContainer.querySelectorAll(".favoriteBookRow");
-  console.log(favoriteBooksElements);
   const removedBook = Array.from(favoriteBooksElements).find(
     (element) => element.dataset.key === bookKey,
   );

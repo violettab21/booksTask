@@ -1,18 +1,14 @@
 import { createBookCard } from "./bookCard";
-import {
-  createDivElement,
-  createElement,
-  createParagraphElement,
-} from "../../utils/utils";
+import { createDivElement, createParagraphElement } from "../../utils/utils";
 import "../../../styles/booksList.css";
 import { getFavoriteBooks } from "../../services/favoriteBooks";
-
 import { favoriteButtonHandler } from "../favorites/favoriteBookRow";
 
 const startSearchText = "Start Search Your Book";
 const noBooksText = "No Books Found";
 
 export function createBooksListElement() {
+  //create message paragraph element
   const startSearchMessage = createParagraphElement(startSearchText, [
     "message",
   ]);
@@ -38,6 +34,7 @@ export function createBooksList(books) {
 }
 
 export function changeBooksList(books) {
+  //update books list after search
   let content;
   if (books.length === 0) {
     content = createParagraphElement(noBooksText, ["message"]);

@@ -31,6 +31,7 @@ export function createLogoElement() {
     "Discover your next favorite book",
     ["headerSecondaryText"],
   );
+
   //create container for logo text
   const headerItemTextBlock = createDivElement(
     ["headerTextBlock"],
@@ -41,6 +42,7 @@ export function createLogoElement() {
   const img = createElement("img", ["headerImage"]);
   img.src = book;
   const headerItemIconBlock = createDivElement(["headerImageBlock"], img);
+
   //create logo container
   const headerLogo = createDivElement(
     ["headerLogoContainer"],

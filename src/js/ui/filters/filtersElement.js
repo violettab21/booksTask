@@ -7,7 +7,7 @@ export function createFiltersElement() {
   const filtersHeader = createParagraphElement("Filters", ["filtersHeader"]);
   //create filter by author element
   const authorsFilterContainer = createFilterByAuthorElement();
-  //create filters header element
+  //create filters container
   const filtersContainer = createDivElement(
     ["filtersContainer"],
     [filtersHeader, authorsFilterContainer],
