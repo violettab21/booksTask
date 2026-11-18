@@ -1,5 +1,10 @@
 import "./styles/style.css";
-import { createHeader } from "./js/header";
+import { createHeader } from "./js/ui/header/header";
+import { createMainContent } from "./js/ui/mainContent";
+import { createFooterElement } from "./js/ui/footer";
 
 const header = createHeader();
-document.querySelector("#app").append(header);
+const mainSection = createMainContent();
+const footer = createFooterElement();
+
+document.querySelector("body").append(header, mainSection, footer);

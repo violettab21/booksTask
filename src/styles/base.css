@@ -18,3 +18,11 @@
   --shadow: #c4b8a8;
   --favorite: #eaf0ed;
 }
+
+.dark {
+  --background: var(--black);
+  --card: var(--brown);
+  --title: var(--white);
+  --text: var(--white);
+  --border: rgb(60, 60, 60);
+}

@@ -1,0 +1,72 @@
+import {
+  createElement,
+  createParagraphElement,
+  createButtonElement,
+  createDivElement,
+} from "../../utils/utils";
+import "../../../styles/bookCard.css";
+import favoriteImg from "../../../assets/heart.svg?raw";
+
+const placeholderImage =
+  "https://media.istockphoto.com/id/1226328537/vector/image-place-holder-with-a-gray-camera-icon.jpg?s=612x612&w=0&k=20&c=qRydgCNlE44OUSSoz5XadsH7WCkU59-l-dwrvZzhXsI=";
+
+export function createBookCard(book) {
+  //create image block
+  const bookImage = createElement("img", ["bookImage"]);
+  bookImage.src = getBookImage(book.cover_i);
+  const bookImageBlock = createDivElement(["bookImageBlock"], bookImage);
+
+  //create book info block
+  const bookName = createParagraphElement(book.title, [
+    "cardBookName",
+    "bookName",
+  ]);
+  const bookAuthor = createParagraphElement(book.author_name, [
+    "cardBookAuthor",
+    "bookAuthor",
+  ]);
+  const bookYear = createParagraphElement(book.first_publish_year, [
+    "cardBookYear",
+    "bookYear",
+  ]);
+
+  const bookInfoBlock = createDivElement(
+    ["bookInfoBlock"],
+    [bookName, bookAuthor, bookYear],
+  );
+
+  //create favorite icon
+  const favoriteButton = createFavoriteIcon();
+
+  //create book card container
+  const bookCardContainer = createDivElement(
+    ["bookCard"],
+    [bookImageBlock, bookInfoBlock, favoriteButton],
+  );
+  //add data attribute to store key
+  bookCardContainer.dataset.key = book.key;
+  return bookCardContainer;
+}
+
+export function getBookImage(coverI) {
+  return coverI
+    ? `https://covers.openlibrary.org/b/id/${coverI}.jpg`
+    : placeholderImage;
+}
+
+export function createFavoriteIcon() {
+  const favoriteIconButton = createButtonElement("", ["favoriteIconButton"]);
+  favoriteIconButton.innerHTML = favoriteImg;
+  return favoriteIconButton;
+}
+
+export function toggleBookListFavoriteIcon(key) {
+  //handle book card icon state when favorite books list updated
+  const bookList = document.querySelector(".booksList");
+  if (bookList) {
+    const bookCard = bookList.querySelector(`.bookCard[data-key='${key}']`);
+    if (bookCard) {
+      bookCard.classList.toggle("isFavorite");
+    }
+  }
+}

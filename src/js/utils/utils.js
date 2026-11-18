@@ -3,14 +3,37 @@ export function createElement(tag, classes, children, text) {
   if (classes) {
     element.classList.add(...classes);
   }
-
-  if (children) {
-    element.append(children);
-  }
-
   if (text) {
     element.textContent = text;
   }
+  if (children) {
+    if (Array.isArray(children)) {
+      element.append(...children);
+    } else {
+      element.append(children);
+    }
+  }
 
   return element;
+}
+
+export function createDivElement(classes, children) {
+  const element = createElement("div", classes, children);
+  return element;
+}
+
+export function createParagraphElement(text, classes, children) {
+  const element = createElement("p", classes, children, text);
+  return element;
+}
+
+export function createButtonElement(text, classes, onClick, children) {
+  const button = createElement("button", classes, children, text);
+  if (onClick) {
+    button.addEventListener("click", (event) => {
+      onClick(event);
+    });
+  }
+
+  return button;
 }
