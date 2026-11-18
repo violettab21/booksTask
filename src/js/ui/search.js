@@ -3,8 +3,8 @@ import {
   createDivElement,
   createElement,
   createParagraphElement,
-  debounce,
 } from "../utils/utils";
+import { debounce } from "../utils/debounce";
 import "../../styles/search.css";
 import searchIcon from "../../assets/search.svg";
 import {

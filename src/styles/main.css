@@ -27,6 +27,10 @@
 }
 
 @media (max-width: 768px) {
+  .container {
+    padding: 12px 24px;
+  }
+
   .books {
     display: flex;
     flex-direction: column;

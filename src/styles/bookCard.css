@@ -2,7 +2,6 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 18%;
   min-width: 150px;
   background-color: var(--card);
   border-radius: 8px;

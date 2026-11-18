@@ -37,21 +37,3 @@ export function createButtonElement(text, classes, onClick, children) {
 
   return button;
 }
-
-export function createFragment() {
-  const fragment = document.createDocumentFragment();
-  return fragment;
-}
-
-export function debounce(func) {
-  let timerId;
-  return function (...args) {
-    if (timerId) {
-      clearTimeout(timerId);
-    }
-
-    timerId = setTimeout(() => {
-      func(...args);
-    }, 500);
-  };
-}
