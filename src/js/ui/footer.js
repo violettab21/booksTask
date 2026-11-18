@@ -6,6 +6,7 @@ const linkHref = "https://openlibrary.org/";
 export function createFooterElement() {
   const link = createElement("a", ["footerLink"], undefined, "Open Library");
   link.href = linkHref;
+  link.target = "_blank";
 
   const footerText = createParagraphElement(
     "Powered by ",
