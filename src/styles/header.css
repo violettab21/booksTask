@@ -5,7 +5,7 @@
 .headerPrimaryText {
   font-size: 20px;
   font-weight: 600;
-  color: var(--text);
+  color: var(--title);
 }
 
 .headerSecondaryText {

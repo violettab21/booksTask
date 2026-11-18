@@ -4,8 +4,8 @@ import "../../../styles/booksList.css";
 import { getFavoriteBooks } from "../../services/favoriteBooks";
 import { favoriteButtonHandler } from "../favorites/favoriteBookRow";
 
-const startSearchText = "Start Search Your Book";
 const noBooksText = "No Books Found";
+export const startSearchText = "Start Search Your Book";
 
 export function createBooksListElement() {
   //create message paragraph element
@@ -45,19 +45,9 @@ export function changeBooksList(books) {
   changeBooksListContainer(content);
 }
 
-export function showLoader() {
-  const loader = createParagraphElement("Loading...", ["loader"]);
-  changeBooksListContainer(loader);
-}
-
-export function showBooksSearchError(errorText) {
-  const error = createParagraphElement(errorText, ["message", "error"]);
-  changeBooksListContainer(error);
-}
-
-export function showStartTyping() {
-  const message = createParagraphElement(startSearchText, ["message"]);
-  changeBooksListContainer(message);
+export function showSearchResultMessage(message, classes) {
+  const messageElement = createParagraphElement(message, classes);
+  changeBooksListContainer(messageElement);
 }
 
 export function changeBooksListContainer(children) {

@@ -77,8 +77,8 @@
 
 .favoritesTitle {
   font-weight: 700;
-  font-size: 14px;
-  color: var(--text);
+  font-size: 16px;
+  color: var(--title);
 }
 
 .favoritesCountText {

@@ -1,7 +1,10 @@
 import { createDivElement, createParagraphElement } from "../../utils/utils.js";
 
 import "../../../styles/favorites.css";
-import { createFavoritesListElement } from "./favoriteBooks.js";
+import {
+  createFavoritesListElement,
+  createNoFavoritesMessage,
+} from "./favoriteBooks.js";
 import { createFavoriteBookElement } from "./favoriteBookRow.js";
 import favoriteImg from "../../../assets/heart.svg?raw";
 
@@ -9,6 +12,7 @@ export function createFavoritesElement(favorites) {
   //create favorites header
   const favoriteHeader = createFavoritesHeaderElement(favorites.length);
   //create favorites list
+
   const favoriteList = createFavoritesListElement(favorites);
 
   const favoritesContainer = createDivElement(
@@ -51,7 +55,11 @@ export function showNewFavorite(book) {
   //add new favorite book row
   const favoriteBookContainer = document.querySelector(".favoritesList");
   const newFavoriteBookRow = createFavoriteBookElement(book);
-  favoriteBookContainer.append(newFavoriteBookRow);
+  if (favoriteBookContainer.querySelector(".favoriteBookRow")) {
+    favoriteBookContainer.append(newFavoriteBookRow);
+  } else {
+    favoriteBookContainer.replaceChildren(newFavoriteBookRow);
+  }
 }
 
 export function removeFavorite(bookKey) {
@@ -63,6 +71,10 @@ export function removeFavorite(bookKey) {
     (element) => element.dataset.key === bookKey,
   );
   removedBook.remove();
+  if (!favoriteBookContainer.querySelector(".favoriteBookRow")) {
+    const noFavoritesMessage = createNoFavoritesMessage();
+    favoriteBookContainer.append(noFavoritesMessage);
+  }
 }
 
 export function updateFavoritesCount(count) {

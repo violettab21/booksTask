@@ -2,12 +2,21 @@ import {
   createFavoriteBookElement,
   favoriteButtonHandler,
 } from "./favoriteBookRow.js";
-import { createDivElement } from "../../utils/utils.js";
+import { createDivElement, createParagraphElement } from "../../utils/utils.js";
 
 export function createFavoritesListElement(favorites) {
   //create favorite books list container
-  const favoritesFragment = createFavoritesList(favorites);
-  const favoritesList = createDivElement(["favoritesList"], favoritesFragment);
+  let favoriteListContent;
+  if (favorites.length === 0) {
+    favoriteListContent = createNoFavoritesMessage();
+  } else {
+    favoriteListContent = createFavoritesList(favorites);
+  }
+
+  const favoritesList = createDivElement(
+    ["favoritesList"],
+    favoriteListContent,
+  );
   favoritesList.addEventListener("click", (event) => {
     favoriteButtonHandler(event);
   });
@@ -22,4 +31,9 @@ export function createFavoritesList(favorites) {
     favoritesFragment.append(favoriteBook);
   }
   return favoritesFragment;
+}
+
+export function createNoFavoritesMessage() {
+  const messageElement = createParagraphElement("No favorites", ["message"]);
+  return messageElement;
 }

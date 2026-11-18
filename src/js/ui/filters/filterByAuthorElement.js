@@ -33,6 +33,8 @@ function createAuthorsListElement() {
     ["authorsListContainer"],
     authorsFragment,
   );
+  authorsElement.addEventListener("click", handleFilterByAuthor);
+
   return authorsElement;
 }
 
@@ -61,7 +63,6 @@ function createAuthorFilterItem(author) {
     [authorCheckbox, label],
   );
   checkboxRow.dataset.author = author;
-  checkboxRow.addEventListener("click", handleFilterByAuthor);
   return checkboxRow;
 }
 
@@ -81,28 +82,30 @@ export function updateFilters() {
 }
 
 export function handleFilterByAuthor(e) {
-  const checkboxRow = e.currentTarget;
-  const author = checkboxRow.dataset.author;
-  const checkbox = checkboxRow.querySelector(".authorCheckbox");
-  //update selected filters storage
-  if (author) {
-    if (checkbox.checked) {
-      setFilterAuthors([...getFilterAuthors(), author]);
-    } else {
-      setFilterAuthors(
-        getFilterAuthors().filter((authorFilter) => authorFilter !== author),
-      );
+  const checkboxRow = e.target.closest(".checkBoxRow");
+  if (checkboxRow) {
+    const author = checkboxRow.dataset.author;
+    const checkbox = checkboxRow.querySelector(".authorCheckbox");
+    //update selected filters storage
+    if (author) {
+      if (checkbox.checked) {
+        setFilterAuthors([...getFilterAuthors(), author]);
+      } else {
+        setFilterAuthors(
+          getFilterAuthors().filter((authorFilter) => authorFilter !== author),
+        );
+      }
     }
-  }
-  //get selected filters by authors
-  const filteredAuthorsOptions = getFilterAuthors();
-  if (filteredAuthorsOptions.length > 0) {
-    const filteredBooks = filterBooksByAuthor(getFilterAuthors());
-    //update books list in DOM with filtered books
-    changeBooksList(filteredBooks);
-  } else {
-    //if all checkboxes are uncheck show books by initial search
-    const filteredBooks = getBooks();
-    changeBooksList(filteredBooks);
+    //get selected filters by authors
+    const filteredAuthorsOptions = getFilterAuthors();
+    if (filteredAuthorsOptions.length > 0) {
+      const filteredBooks = filterBooksByAuthor(getFilterAuthors());
+      //update books list in DOM with filtered books
+      changeBooksList(filteredBooks);
+    } else {
+      //if all checkboxes are uncheck show books by initial search
+      const filteredBooks = getBooks();
+      changeBooksList(filteredBooks);
+    }
   }
 }

@@ -9,13 +9,12 @@ import "../../styles/search.css";
 import searchIcon from "../../assets/search.svg";
 import {
   changeBooksList,
-  showLoader,
-  showBooksSearchError,
-  showStartTyping,
+  showSearchResultMessage,
 } from "./booksList/booksList";
 import { searchBook } from "../api/booksApi";
 import { setBooks, transformBooks } from "../services/books";
 import { updateFilters } from "./filters/filterByAuthorElement";
+import { startSearchText } from "./booksList/booksList";
 
 const titleText = "Discover your next great read";
 const descriptionText =
@@ -62,10 +61,10 @@ function searchBookHandler() {
   const searchTerm = searchInput.value;
   //handle empty input
   if (searchTerm.trim().length === 0) {
-    showStartTyping();
+    showSearchResultMessage(startSearchText, ["message"]);
     return;
   }
-  showLoader();
+  showSearchResultMessage("Loading...", ["loader"]);
   //send request to Open Library API
   searchBook(searchInput.value)
     .then((res) => {
@@ -74,6 +73,6 @@ function searchBookHandler() {
       updateFilters();
     })
     .catch((err) => {
-      showBooksSearchError(err);
+      showSearchResultMessage(err, ["error", "message"]);
     });
 }
